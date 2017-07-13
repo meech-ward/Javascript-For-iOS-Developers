@@ -4,6 +4,11 @@
 
 ## Introduction
 
+The purpose of this document is to introduce the Javascript programming language to iOS developers that are familiar with Swift. Use this to get started with Javascript and come back to this as a reference when you need help.
+
+Make sure you have node installed on your machine, and practice coding in javascript as you read. Enter `node` in terminal on your computer to start the javascript REPL, that  way you can play around with javascript as you read. Think of this as the equivalent of using a playground to try out swift code.
+
+
 ## Variables
 
 Like Swift and Objective-C, Javascript uses variables and constants to store and refer to values.
@@ -37,11 +42,8 @@ let currentTemperature = 14;
 const hoursInADay = 24;
 ```
 
-[Javascript variables](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript#Variables)
 
 ## Types
-
-[Javascript types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 
 Types are the kind of variables and constants that we are creating. Strings, Integers, Arrays, etc. We haven't told Javascript what kind of variable we are creating, we just create the variable and assign a value to it. Javascript uses these values to assume what kind of variable you wanted to create. 
 
@@ -57,15 +59,15 @@ console.log(typeof myVariable);
 // Prints 'number' to the console
 ```
 
-> `console.log()` is the equivilent of `print()` in Swift.
+> `console.log()` is the equivalent of `print()` in Swift.
 
 
 This is similar to the way we create variables in swift, but there are two major differences. 
 
 1. In Swift we can specify a type, in Javascript we cannot.
-2. In Swift, once a type has been set, it can never be changed. In Javascript, types can change all the time.
+2. In Swift, once a type has been set, it can never be changed. In Javascript, types can change at any time.
 
-#### Types can change
+### Types can change
 
 JavaScript is a loosely typed or a dynamic language. That means you don't have to declare the type of a variable ahead of time. It also means that you can have the same variable as different types:
 
@@ -87,11 +89,11 @@ greeting = String(greeting) // greeting is now a string with the value "10"
 greeting = true;  // greeting is now a Boolean
 ```
 
-#### No explicit types
+### No explicit types
 
 Every variable in swift has a type weather you specify it or not. If a variable doesn't have a type, your app will not compile.
 
-In Javascript, a variable doesn't have a type until a value is assigned to it and there is no way to explicitly specify a type without assigning a value.
+In Javascript, a variable doesn't have a type until a value is assigned to it, and there is no way to explicitly specify a type without assigning a value.
 
 *Swift:*
 
@@ -107,7 +109,7 @@ let greeting; // greeting is defined but has not type. Actually it's type is 'un
 greeting = "Hello, world!" // greeting is now a string with the value "Hello, world!"
 ```
 
-This can lead to some scary code:
+This can lead to some code that is very scary for someone that is used to type safety:
 
 *Swift:*
 
@@ -141,7 +143,7 @@ sum("some string");
 
 > Note: Our app would throw an error when this line of code runs. But there would be no issues until it gets called.
 
-Different types:
+Different types in javascript:
 
 * Boolean
 * Null
@@ -155,7 +157,7 @@ We'll take a look at Numbers, Strings, and Objects.
 
 ## Numbers
 
-Javascript doesn't differentiate between the different types of numbers, you just get a 64 bit number. So there's no such thing as an integer in JavaScript, everything's pretty much treated as a double.
+Javascript doesn't differentiate between the different types of numbers. There's no such thing as an integer or a float in JavaScript, everything's pretty much treated as a 64 bit double.
 
 ### Special numbers
 
@@ -163,15 +165,15 @@ The first two are Infinity and -Infinity, which represent the positive and negat
 
 NaN stands for “not a number”, even though it is a value of the number type. You’ll get this result when you, for example, try to calculate 0 / 0 (zero divided by zero), Infinity - Infinity, or any number of other numeric operations that don’t yield a precise, meaningful result.
 
-### Arithmatic
+### Operators
 
 Same as swift `+ - * / =`
 
 ## String & Interpolation
 
-* Single and double quotes in javascript. Doesn't matter which, just make sure they match.
-* Concatinate strings using +
-* Interpolotation using `\`${variable\``
+* In Javascript, you can use both single and double quotes to represent a string. It doesn't matter which you use, just make sure they match. `"valid" 'valid' "invalid'`. You can also use backticks for string ` but we'll get to that in a second.
+* You can concatenate strings in javascript the same way you do in Swift, by using `+`, or by string interpolation. 
+* String Interpolation in Javascript works the same way as it does not in Swift, but the syntax is a little different. Your entire string has to be enclosed in backticks `` ` `` and your variable has to be wrapped inside `${variable}`.
 
 
 *Swift:*
@@ -197,7 +199,16 @@ console.log(`${greeting} ${name}`) // Hello Sam
 
 ### String methods
 
-You can find a list of string methods and properties [here](https://www.w3schools.com/jsref/jsref_obj_string.asp). But you can basially acheieve anything in Javascript that you can in swift.
+You can find a list of string methods and properties [here](https://www.w3schools.com/jsref/jsref_obj_string.asp). But you can basically achieve anything in Javascript that you can in Swift.
+
+*Swift 3:*
+
+```swift
+let greeting = "Hello"
+
+greeting.characters.count // 5
+greeting.lowercased() // hello
+```
 
 *Javascript:*
 
@@ -208,9 +219,11 @@ greeting.length // 5
 greeting.toLowerCase() // hello
 ```
 
+> Note: In swift 4 we get the length of the string by calling `string.count` directly.
+
 ## Objects (Dictionaries)
 
-JavaScript objects can be thought of as simple collections of name-value pairs, so they are similar to dictionaries in Objective-C and Swift. Or tuples in Swift.
+JavaScript objects can be thought of as simple collections of name-value pairs, so they are more similar to dictionaries in Objective-C and Swift. Or tuples in Swift.
 
 ```js
 {
@@ -219,7 +232,7 @@ JavaScript objects can be thought of as simple collections of name-value pairs, 
 };
 ```
 
-> Note: Remember that JSON stands for JavaScript Object Notation. Also remember that we convert JSON to a dictionary before we us the data in our iOS apps.
+> Note: Remember that JSON stands for JavaScript Object Notation. Also remember that we convert JSON to a dictionary before we use the data in our iOS apps.
 
 Create an empty object:
 
@@ -248,7 +261,7 @@ dog["age"] = 8;
 
 > Note: let and const are only for assignment, all objects in javascript are mutable.
 
-The key part of the object is a JavaScript string, while the value can be any JavaScript value — including more objects. This allows you to build data structures of arbitrary complexity.
+The key part of the object is a JavaScript string, while the value can be any JavaScript value — including more objects. This allows you to build data structures of arbitrary complexity:
 
 ```js
 const dog = {
@@ -256,7 +269,7 @@ const dog = {
   age: 7,
   owner: {
   	name: "Larry",
-  	pets: ["Fluffly", "George"]
+  	pets: ["Fluffy", "George"]
   }
 };
 ```
@@ -296,9 +309,9 @@ const duck = animals.pop; // [ 'donkey', 'dog', 'cat', 'hen' ]
 const donkey = animals.shift; // [ 'dog', 'cat', 'hen' ]
 ```
 
-## Control Structers if, while, for, & switch
+## Control Structures if, while, for, & switch
 
-Control structers in Javascript are very similar to Swift & Objective-C
+Control structures in Javascript are very similar to Swift & Objective-C
 
 ```js
 const name = 'kittens';
@@ -349,9 +362,9 @@ switch (action) {
 }
 ```
 
-## Opperators and Equality
+## Operators and Equality
 
-Opperators in Javascript are pretty much the same as they are in Swift:
+Operators in Javascript are pretty much the same as they are in Swift:
 
 `+ - * / =`
 
@@ -412,7 +425,7 @@ const result = welcome("Anna", 11);
 
 ## Anonymous Functions
 
-In Swift, we call unamed functions closures. Or the inverse, functions are closures with a name. 
+In Swift, we call unnamed functions closures. Or the inverse, functions are closures with a name. 
 
 ```swift
 let wordPrinterClosure = { (word:String)->(Void) in
@@ -435,7 +448,7 @@ const wordPrinterClosure = (word) => {
 
 The second of these two examples, known as a fat arrow function, is the prefered way of declaring an anonymous function.
 
-Both Swift and Javascript have higher order functions, functions that accept another function as a parameter. This is where we most commonly see uses of anonymous functions. Here's an example of using map on an array of numbers in both languages:
+Both Swift and Javascript allow higher order functions, functions that accept another function as a parameter. This is where we most commonly see uses of anonymous functions. Here's an example of using map on an array of numbers in both languages:
 
 *Swift:*
 
