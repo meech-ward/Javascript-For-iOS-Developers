@@ -2,6 +2,8 @@
 
 > Note: When in doubt, just try something. Chances are the code is going to be the same or similar to swift. <http://i.imgur.com/AwYW1jY.jpg>
 
+## Introduction
+
 ## Variables
 
 Like Swift and Objective-C, Javascript uses variables and constants to store and refer to values.
@@ -472,61 +474,6 @@ numbers.map { number in number * 3 }
 ```swift
 numbers.map( number => number * 3 );
 ```
-
-## Node Modules
-
-Like #import in Objective-C
-
-To include a module, use the require() function with the name of the module:
-
-```js
-// Import the file system module
-var fs = require('fs');
-```
-
-#### Create Your Own Modules
-
-You can create your own modules, and easily include them in your applications.
-
-The following example creates a module that returns a date and time object:
-
-```js
-// datetime.js
-exports.myDateTime = function () {
-    return Date();
-};
-```
-
-Use the exports keyword to make properties and methods available outside the module file.
-
-```js
-var datetime = require('./datetime');
-```
-
-Notice that we use ./ to locate the module, that means that the module is located in the same folder as the Node.js file.
-
-### Node.js file system
-
-The Node.js file system module allows you to work with the file system on your computer.
-
-To include the File System module, use the require() method:
-
-```js
-var fs = require('fs');
-```
-
-Common use for the File System module:
-
-* Read files
-* Create files
-* Update files
-* Delete files
-* Rename files
-
-### Read Files
-
-The fs.readFile() method is used to read files on your computer.
-
 
 ## Extra Resources
 
